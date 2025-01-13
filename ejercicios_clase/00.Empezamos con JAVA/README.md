@@ -17,8 +17,8 @@
 ## Instalación en local del jdk e IDE
 Importancia del licenciamiento:  Software comercial - Trial, Software gratuito, software opensource
 
-Instalar Java SE - Openjdk (java y javac)
-[JAVA openjdk 21](https://jdk.java.net/21/)
+Instalar Java SE - Oracle 23 (java y javac)
+[JAVA Oracle JDK 23](https://www.oracle.com/es/java/technologies/downloads/)
 
 Actualizar el PATH de tu máquina para incluir ./bin
 [Modificacion Path](https://www.java.com/en/download/help/path.xml)
