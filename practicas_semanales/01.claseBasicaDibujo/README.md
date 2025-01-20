@@ -20,7 +20,7 @@ Para pintar el cuadrado en un entorno gráfico (Dibujo) se utilizarán las clase
 ![alt text](diagramaSecuencia.jpg)
 
 ##### Se pide
-1. Implementar las clases Cuadrado, AppDibujo01 y AppDibujo02.
+1. Implementar las clases Cuadrado, AppDibujo01,AppDibujo02 y AppDibujo03 (que será la que se entregue).
 
 Se debe tener en cuenta que se deben compilar todas las clases exisrentes, las proporcionadas por el profesor y las creadas por el alumno. Por lo general, compilando la clase App se deberían compilar todas clases vinculadas, pero si en algún caso no fuera así, forzaremos la compilación de todas ellas con el comando:
 ```
