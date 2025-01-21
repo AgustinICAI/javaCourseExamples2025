@@ -2,6 +2,14 @@ class App01 {
   public static void main (String[] argv){
 
     // Declaración del array de concursantes
+
+    int[] enteros = {1,2,3,4};
+    int[] enteros2 = new int[4];
+    enteros2[0] = 1;
+    enteros2[1] = 2;
+    enteros2[2] = 3;
+    enteros2[3] = 4;
+
     Concursante[] solteros = new Concursante[16];
     // Creación y asignación de los objetos en cada posición del array
     solteros[0] = new Concursante("Kevin", 178, 75, true, "masculino");
@@ -12,7 +20,6 @@ class App01 {
     solteros[5] = new Concursante("Fran", 183, 82, true, "masculino");
     solteros[6] = new Concursante("Gerard", 181, 79, true, "masculino");
     solteros[7] = new Concursante("Borja", 177, 76, true, "masculino");
-
     solteros[8] = new Concursante("Claudia Sánchez", 165, 55, true, "femenino");
     solteros[9] = new Concursante("Nataly Núñez", 168, 58, true, "femenino");
     solteros[10] = new Concursante("Érika Portillo Herrera", 163, 53, true, "femenino");
@@ -53,6 +60,14 @@ class App01 {
         new Concursante("Ana", 166, 56, false, "Femenino"),
         1
     );
+
+    Concurso concurso1 = new Concurso("2025");
+    concurso1.addConcursantes(solteros);
+    concurso1.addParejas(parejas);
+
+    Concurso concurso2 = new Concurso("2025",solteros, parejas);
+
+    System.out.println(concurso2);
 
   }
 

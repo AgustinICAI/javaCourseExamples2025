@@ -43,10 +43,14 @@ class Concursante{
   }
 
   public String toString(){
+    String estado = "En pareja";
+    if(isSoltero())
+      estado = "Soltero";
+
     return "nombre: " + getNombre() +
            ", altura: " + getAltura() +
            ", peso: " + getPeso() +
-           ", soltero: " + isSoltero() +
+           ", estado: " + estado +
            ", sexo: " + sexo + 
            ", isla: " + getIsla();
   }

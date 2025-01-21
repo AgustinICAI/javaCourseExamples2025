@@ -1,6 +1,11 @@
 /** Clase de funcionalidad variada que proporciona una ayuda al alumno */
 public class Util
 {
+	/*CONSTRUCTOR POR DEFECTO
+	Util(){
+	
+	}
+	*/
 	/** 
 		Detiene el programa el tiempo especificado
 		@param segundos número de segundos a esperar 

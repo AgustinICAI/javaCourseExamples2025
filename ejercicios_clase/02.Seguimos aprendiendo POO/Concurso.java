@@ -16,10 +16,10 @@ class Concurso{
     parejas = new Pareja[NUMPAREJAS];
   }
 
-  Concurso(String edicion, Concursante[] concursantes, Pareja[] parejas){
-    this.edicion = edicion;
-    this.parejas = parejas;
-    this.concursantes = concursantes;
+  Concurso(String edicion, Concursante[] solteros, Pareja[] parejas){
+    this(edicion);
+    this.addConcursantes(solteros);
+    this.addParejas(parejas);
   }
 
   boolean addPareja(Pareja pareja){
@@ -30,9 +30,7 @@ class Concurso{
       //addConcursante(pareja.getChica());
 
       Concursante[] cs = pareja.getConcursantes();
-      addConcursantes(cs);
-
-      return true;
+      return addConcursantes(cs);
     }
     else return false;
   }
@@ -56,6 +54,16 @@ class Concurso{
     return false;
   }
 
+  boolean addParejas(Pareja[] parejas){
+    boolean insertados = true;
+    for(int i = 0; i < parejas.length; i = i + 1){
+      boolean insertado = addPareja(parejas[i]);
+      if(insertado == false)
+        insertados = false;
+    }
+    return false;
+  }
+
 //Ejemplo add con bucle while y for
   void addParejaConBucle(Pareja pareja){
     int posLibrePareja = 0;
@@ -73,6 +81,20 @@ class Concurso{
     }
   }
 
+  public String toString(){
+    
+    String cad = "=====EDICION=====\n" + edicion;
+    /*
+    for(int i = 0; i < concursantes.length; i=i+1){
+      cad = cad + "\n" + concursantes[i].toString();
+    }*/
+
+    for(Concursante c : concursantes){
+      cad += "\n" + c;
+    }
+
+    return cad;
+  }
 
   
 
