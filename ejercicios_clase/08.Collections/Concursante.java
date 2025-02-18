@@ -1,4 +1,4 @@
-class Concursante{
+class Concursante implements Comparable{
   String nombre;
   int altura;
   int peso;
@@ -63,6 +63,15 @@ class Concursante{
     }
     else return false;
   }
+  public int hashCode(){
+    return this.nombre.hashCode();
+  }
 
+  public int compareTo(Object o){
+    if(o instanceof Concursante)
+      return this.nombre.compareTo(((Concursante)o).getNombre());
+    else return -1;
+
+  }
 
 }

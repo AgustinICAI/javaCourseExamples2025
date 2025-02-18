@@ -1,4 +1,4 @@
-class Pareja{
+class Pareja implements Comparable{
   Concursante chico;
   Concursante chica;
   int tiempoRelacion;//meses
@@ -13,6 +13,9 @@ class Pareja{
   }
   void setChica(Concursante chica){
     this.chica = chica;
+  }
+  int getTiempoRelacion(){
+    return tiempoRelacion;
   }
   Concursante getChico(){
     return chico;
@@ -35,6 +38,28 @@ class Pareja{
            "\nTIEMPO RELACION -> " + tiempoRelacion+ "]";
   }
 
+  public boolean equals(Object o){
+    if(o instanceof Pareja){
+      Pareja p = (Pareja)o;
+      return this.getChico().equals(p.getChico()) &&
+             this.getChica().equals(p.getChica());
+    }
+    else return false;
+  }
+  public int hashCode(){
+    return this.getChica().hashCode() + this.getChico().hashCode();
+  }
+  public int compareTo(Object o){
+    if(o instanceof Pareja){
+      Pareja p = (Pareja)o;
+      if(tiempoRelacion > p.getTiempoRelacion())
+        return 1;
+      else if (tiempoRelacion < p.getTiempoRelacion())
+        return -1;
+      else
+        return chica.compareTo(p.getChica());
+    }
+    else return -1;
 
-
+  }
 }
