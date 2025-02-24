@@ -1,7 +1,5 @@
 # Reto TreeSet
 
-Los Mapas son estructuras de datos que permiten almacenar parejas de objetos, para que preguntando por un objeto clave, devuelva el objeto valor.
-
 ### Objetivo
 Crea un programa en Java que:
 
