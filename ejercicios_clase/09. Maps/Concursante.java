@@ -45,16 +45,8 @@ class Concursante implements Comparable{
   }
 
   public String toString(){
-    String estado = "En pareja";
-    if(isSoltero())
-      estado = "Soltero";
 
-    return "nombre: " + getNombre() +
-           ", altura: " + getAltura() +
-           ", peso: " + getPeso() +
-           ", estado: " + estado +
-           ", sexo: " + sexo + 
-           ", isla: " + getIsla();
+    return getNombre();
   }
   public boolean equals(Object o){
     if(o instanceof Concursante ){
