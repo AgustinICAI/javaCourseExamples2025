@@ -3,10 +3,11 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
+import java.awt.event.WindowAdapter;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 
@@ -18,7 +19,7 @@ import net.objecthunter.exp4j.Expression;
 import net.objecthunter.exp4j.ExpressionBuilder;
 
 
-public class JCalculadora extends JFrame implements ActionListener, KeyListener, WindowListener {
+public class JCalculadora extends JFrame {
     public static void main(String[] args) {
         JCalculadora jpv = new JCalculadora();
     }
@@ -32,7 +33,15 @@ public class JCalculadora extends JFrame implements ActionListener, KeyListener,
         this.setSize(800,800);
         this.setVisible(true);
         //this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.addWindowListener(this);
+        this.addWindowListener( new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                //Libera recursos de la ventana y cierra la aplicación
+                //SEGUIR POR AQUI EL PROXIMO DIA
+                JCalculadora.this.dispose();
+                System.exit(0);
+            }
+        } );
     }
     void initComponents(){
         // Aquí se inicializan los componentes de la ventana
@@ -40,7 +49,23 @@ public class JCalculadora extends JFrame implements ActionListener, KeyListener,
         Font fontCalculadora = new Font(Font.SANS_SERIF, Font.BOLD, 30);
         txtPantalla.setFont(fontCalculadora);
         txtPantalla.setHorizontalAlignment(JTextField.RIGHT);
-        txtPantalla.addKeyListener(this);
+        txtPantalla.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                if("0987654321+*/-".indexOf(e.getKeyChar()) == -1){
+                    e.consume();
+                }
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    calculaResultado();
+                }
+            }
+        });
         this.add(txtPantalla, BorderLayout.NORTH);
 
         JPanel pnlBotones = new JPanel();
@@ -56,32 +81,32 @@ public class JCalculadora extends JFrame implements ActionListener, KeyListener,
         for (String literal : botones) {
             JButton jButton = new JButton(literal);
             jButton.setFont(fontCalculadora);
-            jButton.addActionListener(this);
+            jButton.addActionListener(e -> {
+                    JButton jBtnOrigen = (JButton)e.getSource();
+                    String literalEvento = btnLiteral.get(jBtnOrigen);
+                    System.out.println(literalEvento);
+                    if(literalEvento.equals("<-")){
+                        String texto = txtPantalla.getText();
+                        if(texto.length()>0)
+                            txtPantalla.setText(texto.substring(0, texto.length()-1));
+                    }
+                    else if(literalEvento.equals("=")){
+                        calculaResultado();
+                    }
+                    else{
+                        if(literalEvento.equals("X"))
+                        literalEvento = "*";
+                        txtPantalla.setText(txtPantalla.getText()+literalEvento);
+                    }
+                    txtPantalla.requestFocus();
+                }
+            );
             btnLiteral.put(jButton, literal);
             pnlBotones.add(jButton);
         }        
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        JButton jBtnOrigen = (JButton)e.getSource();
-        String literal = btnLiteral.get(jBtnOrigen);
-        System.out.println(literal);
-        if(literal.equals("<-")){
-            String texto = txtPantalla.getText();
-            if(texto.length()>0)
-                txtPantalla.setText(texto.substring(0, texto.length()-1));
-        }
-        else if(literal.equals("=")){
-            calculaResultado();
-        }
-        else{
-            if(literal.equals("X"))
-                literal = "*";
-            txtPantalla.setText(txtPantalla.getText()+literal);
-        }
-        txtPantalla.requestFocus();
-    }
+
 
     
     void calculaResultado(){
@@ -94,49 +119,6 @@ public class JCalculadora extends JFrame implements ActionListener, KeyListener,
         Expression e = new ExpressionBuilder(expresion).build();
         return e.evaluate();
     }
-    @Override
-    public void keyTyped(KeyEvent e) {
-        if("0987654321+*/-".indexOf(e.getKeyChar()) == -1){
-            e.consume();
-        }
-    }
-    @Override
-    public void keyPressed(KeyEvent e) {
-    }
-    @Override
-    public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_ENTER){
-            calculaResultado();
-        }
-    }
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-    @Override
-    public void windowClosing(WindowEvent e) {
-        //Libera recursos de la ventana y cierra la aplicación
-        this.dispose();
-        System.exit(0);
-    }
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-    @Override
-    public void windowIconified(WindowEvent e) {
-    }
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-    }
-    @Override
-    public void windowActivated(WindowEvent e) {
-    }
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-}
-
-
     
   
 }
