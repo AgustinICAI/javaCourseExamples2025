@@ -6,8 +6,10 @@ import javax.swing.JFrame;
 
 public class JFlappy extends JFrame {
     
-    public static int GAME_HEIGHT = 1200;
-    public static int GAME_WIDTH = 700;
+    public static int GAME_HEIGHT = 600;
+    public static int GAME_WIDTH = 1200;
+
+
 
     HashSet<Integer> keys = new HashSet<Integer>();
     public static void main(String[] args) {
@@ -24,7 +26,7 @@ public class JFlappy extends JFrame {
         hilo = new HiloJuego(this);
         hilo.start();
 
-        this.setSize(GAME_WIDTH, GAME_HEIGHT);
+        this.pack();
         this.setResizable(false);
         this.setVisible(true);
         this.requestFocus();

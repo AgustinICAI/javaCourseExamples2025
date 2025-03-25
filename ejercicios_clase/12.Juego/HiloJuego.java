@@ -16,8 +16,7 @@ public class HiloJuego extends Thread {
       try {
 
         pollo.move(jFlappy.getKeys());
-
-
+        
         jFlappy.getFondo().repaint();
         Thread.sleep(1000 / FPS);
       } catch (InterruptedException e) {
