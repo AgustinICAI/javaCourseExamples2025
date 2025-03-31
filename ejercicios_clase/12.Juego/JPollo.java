@@ -1,6 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,15 +11,18 @@ import java.util.HashSet;
 import javax.imageio.ImageIO;
 
 public class JPollo extends Sprite {
+  private static final double SUBIDA = 150;
   boolean espacioPulsado = false;
   long lastEspacioPulsado = 0;
   static int WIDTH = 100;
-  static int HEIGHT = 50;
+  static int HEIGHT = 100;
   BufferedImage imagePollo;
-  BufferedImage imagePolloRotada;
+  private double angulo = 0;
+  private static final double velocidadRotacion = 250;
+  private static final double velocidadCaida = 600;
 
   public JPollo() {
-    super(30, 400, 0, 300);
+    super(80, 400, 0, velocidadCaida);
 
     try {
       BufferedImage imageOriginal = ImageIO.read(new File("flappy.png"));
@@ -33,16 +37,18 @@ public class JPollo extends Sprite {
 
   public void paint(Graphics g) {
     g.setColor(Color.RED);
+    BufferedImage imagePolloRotada = Util.rotarImagen(imagePollo, angulo);
     g.drawImage(imagePolloRotada, (int) x, (int) y, null);
   }
 
   @Override
   public void move(HashSet<Integer> keys) {
     if (keys.contains(KeyEvent.VK_SPACE) && !espacioPulsado) {
-      this.y -= 100;
+      this.y -= JPollo.SUBIDA;
       if (this.y < 0)
         this.y = 0;
       espacioPulsado = true;
+      angulo = 0;
       lastEspacioPulsado = System.currentTimeMillis();
 
     } else if (!keys.contains(KeyEvent.VK_SPACE)) {
@@ -55,9 +61,15 @@ public class JPollo extends Sprite {
 
     long msCayendo = System.currentTimeMillis() - lastEspacioPulsado;
 
-    if (msCayendo > 1000) {
-      imagePolloRotada = Util.rotarImagen(imagePollo, Math.toRadians(90));
+    angulo += velocidadRotacion / HiloJuego.FPS;
+    if(angulo > 90){
+      angulo = 90;
     }
+
+  }
+
+  public Rectangle getRect() {
+    return new Rectangle((int) x, (int) y, WIDTH, HEIGHT);
   }
 
 }

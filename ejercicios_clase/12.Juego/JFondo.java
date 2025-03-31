@@ -6,7 +6,9 @@ import javax.swing.JPanel;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -37,7 +39,12 @@ public class JFondo extends JPanel {
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
     g.drawImage(fondo, 0, 0, this);
+    jFlappy.getTuberias().forEach(t -> t.paint(g));
     jFlappy.getPollo().paint(g);
+
+    g.setColor(Color.BLACK);
+    g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 100));
+    g.drawString(jFlappy.getTuberiasPasadas(), 900, 80 );
   }
 
 }
