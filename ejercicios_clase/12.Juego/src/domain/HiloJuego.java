@@ -1,3 +1,6 @@
+package domain;
+import ui.JFlappy;
+
 import java.util.ArrayList;
 
 public class HiloJuego extends Thread {

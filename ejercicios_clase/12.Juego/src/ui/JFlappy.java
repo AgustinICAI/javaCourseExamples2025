@@ -1,3 +1,7 @@
+package ui;
+
+import domain.*;
+
 import java.awt.Component;
 import java.awt.event.KeyAdapter;
 import java.util.ArrayList;
@@ -61,7 +65,7 @@ public class JFlappy extends JFrame {
     JPollo getPollo() {
         return hilo.getPollo();
     }
-    HashSet<Integer> getKeys() {
+    public HashSet<Integer> getKeys() {
         return keys;
     }
 

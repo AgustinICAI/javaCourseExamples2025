@@ -1,3 +1,7 @@
+package domain;
+
+import ui.JFlappy;
+
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.HashSet;

@@ -1,3 +1,7 @@
+package domain;
+import util.Util;
+import ui.JFlappy;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -25,7 +29,7 @@ public class JPollo extends Sprite {
     super(80, 400, 0, velocidadCaida);
 
     try {
-      BufferedImage imageOriginal = ImageIO.read(new File("flappy.png"));
+      BufferedImage imageOriginal = ImageIO.read(new File("./resources/flappy.png"));
 
       Image image = imageOriginal.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_SMOOTH);
 

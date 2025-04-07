@@ -1,0 +1,20 @@
+### COMPILACION
+
+
+```
+#Estando en src
+javac ui/*.java domain/*.java util/*.java -d ../bin
+#Estando en la base
+javac src/ui/*.java src/domain/*.java src/util/*.java -d ./bin 
+```
+
+### Ejecución
+
+```
+java -cp bin  ui.JFlappy
+```
+
+### Ejecución de un JAR
+```
+java -jar 12.Juego.jar
+```

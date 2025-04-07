@@ -1,3 +1,8 @@
+package ui;
+
+import domain.*;
+
+
 import java.io.File;
 import java.io.IOException;
 
@@ -20,17 +25,19 @@ public class JFondo extends JPanel {
     super();
     this.jFlappy = jFlappy;
     loadFondo();
+    
   }
 
 
   private void loadFondo() {
     try {
-      BufferedImage fondoOriginal = ImageIO.read(new File("fondo.png"));
+      BufferedImage fondoOriginal = ImageIO.read(new File("./resources/fondo.png"));
       
       fondo = fondoOriginal.getScaledInstance(JFlappy.GAME_WIDTH,JFlappy.GAME_HEIGHT, Image.SCALE_SMOOTH);
       
       this.setPreferredSize(new Dimension(JFlappy.GAME_WIDTH, JFlappy.GAME_HEIGHT));
       
+
     } catch (IOException e) {
       System.out.println("No se pudo cargar la imagen");
     }
