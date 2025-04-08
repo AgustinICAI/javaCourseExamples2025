@@ -88,8 +88,8 @@ public class Fondo extends JPanel implements Runnable {
                 long tiempo1 = System.nanoTime();
                 ventana.getJuego().moverPersonajes(teclasPulsadas);
                 ventana.getJuego().comprobarLogica();
-                double tiempoTotal = System.nanoTime() - tiempo1;
                 repaint();
+                double tiempoTotal = System.nanoTime() - tiempo1;
                 double refreshRate = (1.0 / Juego.FPS * 1000);
                 int tiempoSleep = (int) (refreshRate - tiempoTotal / 1000000);
                 if (tiempoSleep < 0)//Hemos perdido todo el tiempo calculando
